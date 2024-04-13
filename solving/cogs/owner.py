@@ -97,7 +97,7 @@ class Owner(commands.Cog, name="owner"):
         :param cog: The name of the cog to load.
         """
         try:
-            await self.bot.load_extension(f"cogs.{cog}")
+            await self.bot.load_extension(f"solving.cogs.{cog}")
         except Exception:
             embed = discord.Embed(
                 description=f"Could not load the `{cog}` cog.", color=0xE02B2B
@@ -123,7 +123,7 @@ class Owner(commands.Cog, name="owner"):
         :param cog: The name of the cog to unload.
         """
         try:
-            await self.bot.unload_extension(f"cogs.{cog}")
+            await self.bot.unload_extension(f"solving.cogs.{cog}")
         except Exception:
             embed = discord.Embed(
                 description=f"Could not unload the `{cog}` cog.", color=0xE02B2B
@@ -149,11 +149,12 @@ class Owner(commands.Cog, name="owner"):
         :param cog: The name of the cog to reload.
         """
         try:
-            await self.bot.reload_extension(f"cogs.{cog}")
-        except Exception:
+            await self.bot.reload_extension(f"solving.cogs.{cog}")
+        except Exception as e:
             embed = discord.Embed(
                 description=f"Could not reload the `{cog}` cog.", color=0xE02B2B
             )
+            print(e)
             await context.send(embed=embed)
             return
         embed = discord.Embed(
